@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+        <style>
+            .green-brdr {
+                border:1px solid green !important;
+            }
+            .red-brdr {
+                border:1px solid red !important;
+            }
+        
+        </style>
+    </head>
+<body>
+    <div ng-app="mainApp" ng-controller="testCtrl"> 
+        <form name="userForm" novalidate>
+            <div class="form-group" ng-repeat="field in validateFormData.LstFields">
+            <label>{{field.name}}</label>
+            <input type="text" name="name" class="form-control" ng-model="field.ngModel" field-validation fdata="field" fields="validateFormData" ng-class="{'red-brdr':field.errBrdr, 'green-brdr': !field.errBrdr}">
+                <p ng-repeat="errorText in field.errTxts" class="help-block">{{errorText}}</p> 
+            </div>
+            <button type="submit" ng-disabled="!validateFormData.IsFormActive" class="btn btn-primary" ng-click="validateFormData.OnValidationSucceed()">Submit</button>
+        </form>
+    </div>
+</body>
+<script src="js/main.js"></script> 
+
+</html>
